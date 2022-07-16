@@ -1,13 +1,13 @@
 version: '3.4'
 
 services:
-  fullstackassignment:
-    image: fullstackassignment
+  django:
+    image: django
     build:
       context: .
       dockerfile: ./Dockerfile
     ports:
-      - 8088:8088
+      - 8088:80
     networks:
       - djangonet
     volumes:
@@ -22,7 +22,8 @@ services:
       - "5432:5432/tcp"  # allow your local dev env to connect to the db
     environment:
       POSTGRES_DB: "db"
-      POSTGRES_PASSWORD: "password"
+      POSTGRES_USER: "dbuser"
+      POSTGRES_PASSWORD: "dbpass"
       POSTGRES_HOST_AUTH_METHOD: "trust"
       SERVICE_MANAGER: "fsm-postgres"
 
@@ -31,6 +32,31 @@ services:
 
     volumes:
       - ".:/app:rw"
+
+  pgadmin:
+    container_name: pgadmin4_container
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: chensihai@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: password
+    ports:
+      - "5050:80"
+
+  redis:
+    container_name: redis
+    image: redis:latest
+    restart: always
+    entrypoint: redis-server --appendonly yes --requirepass 'redis_password' --maxmemory 512mb --maxmemory-policy allkeys-lru
+    networks:
+      - djangonet
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./redis_data:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+
 
 networks:
   djangonet:
