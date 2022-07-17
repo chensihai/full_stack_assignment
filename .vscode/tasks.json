@@ -6,8 +6,8 @@
 			"label": "docker-build",
 			"platform": "python",
 			"dockerBuild": {
-				"tag": "fullstackassignment:latest",
-				"dockerfile": "${workspaceFolder}/Dockerfile",
+				"tag": "api:latest",
+				"dockerfile": "${workspaceFolder}/Dockerfile_debug",
 				"context": "${workspaceFolder}",
 				"pull": true
 			}
@@ -25,7 +25,7 @@
 					"--nothreading",
 					"--noreload"
 				],
-				"file": "app.py"
+				"file": "manage.py"
 			}
 		}
 	]
