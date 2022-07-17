@@ -12,7 +12,11 @@
                         "remoteRoot": "/app"
                     }
                 ],
-                "projectType": "django"
+                "projectType": "django",
+                "purpose": ["debug-test"],
+                "console": "integratedTerminal",
+                "justMyCode": false,
+                "analysis.indexing": true
             }
         }
     ]
