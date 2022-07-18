@@ -1,11 +1,11 @@
-version: '3.4'
+version: '3.7'
 
 services:
   apidb:
     # Select one of the following db configurations for the database
-    image: postgres:13.5-alpine
+    image: postgres:12.11
     ports:
-      - "5432:5432/tcp"  # allow your local dev env to connect to the db
+      - "5432:5432"  # allow your local dev env to connect to the db
     environment:
       POSTGRES_DB: "db"
       POSTGRES_USER: "dbuser"
@@ -24,7 +24,8 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile_debug
-    command: ["sh", "-c", "pip install debugpy -t /tmp && python /tmp/debugpy --wait-for-client --listen 0.0.0.0:5678 manage.py runserver 0.0.0.0:8088 --nothreading --noreload"]
+    command: python manage.py runserver 0.0.0.0:8088
+    # command: ["sh", "-c", "pip install debugpy -t /tmp && python /tmp/debugpy --wait-for-client --listen 0.0.0.0:5678 manage.py runserver 0.0.0.0:8088 --nothreading --noreload"]
     ports:
       - 8088:8088
       - 5678:5678
