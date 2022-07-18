@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     
      # Post application 
     # 'post.apps.PostConfig',
+    'people'
 ]
 
 MIDDLEWARE = [
