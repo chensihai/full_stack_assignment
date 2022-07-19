@@ -17,8 +17,10 @@ from django.contrib import admin
 from django.urls import path
 
 from people import views as people_views
+from custom_user import views as custom_user_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/people/', people_views.index),
+    path('api/user/', custom_user_views.index),
 ]

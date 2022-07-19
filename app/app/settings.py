@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+AUTH_USER_MODEL = 'custom_user.CustomUser'
 
 # Application definition
 
@@ -43,7 +44,8 @@ INSTALLED_APPS = [
     
      # Post application 
     # 'post.apps.PostConfig',
-    'people'
+    'people',
+    'custom_user'
 ]
 
 MIDDLEWARE = [
