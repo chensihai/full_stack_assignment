@@ -45,7 +45,8 @@ INSTALLED_APPS = [
      # Post application 
     # 'post.apps.PostConfig',
     'people',
-    'custom_user'
+    'custom_user',
+    'mysite'
 ]
 
 MIDDLEWARE = [
