@@ -1,10 +1,12 @@
 # from django.contrib.auth.models import AbstractUser
 from django.db import models
+# from django.db.models import CharField
 # from django.urls import reverse
 # from django.utils.translation import gettext_lazy as _
 
 
 class People(models.Model):
+
     name = models.CharField("Name of User", blank=True, max_length=255)
     lattitude = models.CharField("Lattitude", blank=True, max_length=255)
     longtitude = models.CharField("Longtitude", blank=True, max_length=255)
