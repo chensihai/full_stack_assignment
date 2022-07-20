@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     
     # Django REST framework 
     'rest_framework',
-    
+    'corsheaders',
+
      # Post application 
     # 'post.apps.PostConfig',
     'people',
@@ -57,8 +58,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+     'corsheaders.middleware.CorsMiddleware',
 ]
-
+CORS_ORIGIN_WHITELIST = [
+     'http://localhost'
+]
 ROOT_URLCONF = 'app.urls'
 
 TEMPLATES = [

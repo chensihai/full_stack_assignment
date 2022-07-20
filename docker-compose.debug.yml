@@ -26,9 +26,11 @@ services:
       dockerfile: ./Dockerfile_debug
     command: python manage.py runserver 0.0.0.0:8088
     # command: ["sh", "-c", "pip install debugpy -t /tmp && python /tmp/debugpy --wait-for-client --listen 0.0.0.0:5678 manage.py runserver 0.0.0.0:8088 --nothreading --noreload"]
+    # command: ["sh", "-c", "/usr/local/bin/python manage.py runserver 0.0.0.0:8088 && sleep 1000 && cd /app/frontend && npm start"]
     ports:
       - 8088:8088
-      - 5678:5678
+      # - 5678:5678
+      - 3008:3000
     depends_on:
       - apidb
     links:
@@ -39,6 +41,24 @@ services:
       - "./app:/app:rw"
       - "./data:/data:rw"
     env_file: .env-local
+
+  nodejs:
+    image: frontend
+    build:
+      context: .
+      dockerfile: ./Dockerfile_nodejs
+    command: npm start
+    ports:
+      - 3000:3000
+    depends_on:
+      - api
+    networks:
+      - djangonet
+    volumes:
+      - "./app:/app:rw"
+      - "./data:/data:rw"
+
+
 
   pgadmin:
     container_name: pgadmin4_container

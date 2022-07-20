@@ -1,7 +1,7 @@
 # For more information, please refer to https://aka.ms/vscode-docker-python
 FROM python:3.8-slim
 
-EXPOSE 8088
+EXPOSE 8088 3008
 
 # Keeps Python from generating .pyc files in the container
 ENV PYTHONDONTWRITEBYTECODE=1
@@ -19,6 +19,14 @@ RUN pip install debugpy
 COPY requirements.txt .
 RUN python -m pip install -r requirements.txt
 
+# RUN apt-get update && apt-get install -y xz-utils curl supervisor\
+# && curl https://nodejs.org/dist/v14.15.4/node-v14.15.4-linux-x64.tar.xz -O \
+# && tar -xf node-v14.15.4-linux-x64.tar.xz
+
+# RUN ln -s /node-v14.15.4-linux-x64/bin/node /usr/local/bin/node \
+# && ln -s /node-v14.15.4-linux-x64/bin/npm /usr/local/bin/npm \
+# && ln -s /node-v14.15.4-linux-x64/bin/npx /usr/local/bin/npx
+
 WORKDIR /app
 COPY ./app /app
 
@@ -33,4 +41,7 @@ COPY ./app /app
 # command: ["sh", "-c", "pip install debugpy -t /tmp && python /tmp/debugpy --wait-for-client --listen 0.0.0.0:5678 manage.py runserver 0.0.0.0:8088 --nothreading --noreload"]
 
 # CMD ["python", "-m", "debugpy", "--wait-for-client", "--listen", "0.0.0.0:5678", "manage.py", "runserver", "0.0.0.0:8088", "--nothreading", "--noreload"]
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8088"]
+# CMD ["python", "manage.py", "runserver", "0.0.0.0:8088"]
+
+# COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+# CMD ["/usr/bin/supervisord"]
