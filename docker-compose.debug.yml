@@ -55,7 +55,7 @@ services:
     networks:
       - djangonet
     volumes:
-      - "./app:/app:rw"
+      - "./app/frontend:/usr/src/app:rw"
       - "./data:/data:rw"
 
 
