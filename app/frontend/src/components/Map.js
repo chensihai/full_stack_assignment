@@ -1,15 +1,17 @@
 import React from 'react'
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import axios from 'axios';
 
 const containerStyle = {
-  width: '400px',
-  height: '400px'
+  width: '1200px',
+  height: '800px'
 };
 
 const center = {
-  lat: -3.745,
-  lng: -38.523
+  lat: 23.8103,
+  lng: 90.4125
 };
+
 
 function MyComponent() {
   const { isLoaded } = useJsApiLoader({
