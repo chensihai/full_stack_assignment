@@ -24,13 +24,13 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile_debug
-    command: python manage.py runserver 0.0.0.0:8088
+    # command: python manage.py runserver 0.0.0.0:8088
     # command: ["sh", "-c", "pip install debugpy -t /tmp && python /tmp/debugpy --wait-for-client --listen 0.0.0.0:5678 manage.py runserver 0.0.0.0:8088 --nothreading --noreload"]
     # command: ["sh", "-c", "/usr/local/bin/python manage.py runserver 0.0.0.0:8088 && sleep 1000 && cd /app/frontend && npm start"]
     ports:
       - 8088:8088
       # - 5678:5678
-      - 3008:3000
+      # - 3008:3000
     depends_on:
       - apidb
     links:
