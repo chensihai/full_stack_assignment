@@ -6,7 +6,7 @@ class CustomUsersManagersTests(TestCase):
 
     def test_create_user(self):
         User = get_user_model()
-        user = User.objects.create_user(email='normal@user.com', password='foo')
+        user = User.objects.create_user(email='normal@user.com', password='foo', first_name='Simon', last_name='Chen', phone='4166666666')
         self.assertEqual(user.email, 'normal@user.com')
         self.assertTrue(user.is_active)
         self.assertFalse(user.is_staff)
