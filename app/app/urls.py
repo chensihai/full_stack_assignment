@@ -18,10 +18,9 @@ from django.urls import path, include
 
 from people import views as people_views
 from custom_user import views as custom_user_views
-from mysite import views as mysite_views
 
 urlpatterns = [
-    path('', mysite_views.index),
+    # path('', mysite_views.index),
     path('admin/', admin.site.urls),
     path('api/people/', people_views.index),
     path('api/user/', custom_user_views.index),

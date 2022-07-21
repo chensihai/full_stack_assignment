@@ -29,11 +29,11 @@ ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = 'custom_user.CustomUser'
 
-STATIC_URL = "/static/"
+# STATIC_URL = "/static/"
 
-STATICFILES_DIRS = (
-  '/app/frontend/build/',
-)
+# STATICFILES_DIRS = (
+#   '/app/frontend/build/',
+# )
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -50,8 +50,7 @@ INSTALLED_APPS = [
      # Post application 
     # 'post.apps.PostConfig',
     'people',
-    'custom_user',
-    'mysite'
+    'custom_user'
 ]
 
 MIDDLEWARE = [
