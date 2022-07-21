@@ -1,6 +1,6 @@
 import React from 'react'
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
-import axios from 'axios';
+// import axios from 'axios';
 
 const containerStyle = {
   width: '1200px',
@@ -12,8 +12,8 @@ const center = {
   lng: 90.4125
 };
 
-
 function MyComponent() {
+  const people = sessionStorage.getItem('people');
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: process.env.GMAP_API_KEY
@@ -30,7 +30,7 @@ function MyComponent() {
   const onUnmount = React.useCallback(function callback(map) {
     setMap(null)
   }, [])
-
+  
   return isLoaded ? (
       <GoogleMap
         mapContainerStyle={containerStyle}

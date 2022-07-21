@@ -3,7 +3,10 @@ import React, { Component} from "react";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import MAP from "./components/Map";
+import { Provider } from 'react-redux'
 import 'bootstrap/dist/css/bootstrap.min.css';
+// import store from './store'
+
 
 // create a class that extends the component
 class App extends Component {
@@ -22,14 +25,48 @@ class App extends Component {
 			},
 
 			// this list stores all the completed tasks
-			taskList: []
+			people: []
 		};
 	}
 
+	// Add componentDidMount()
+	componentDidMount() {
+		 this.refreshList();
+	}
 
+
+	async refreshList(){
+		const axios = require('axios').default;
+		const res = await axios('http://localhost:8088/api/people/');
+		this.state.people=JSON.parse(res.data.people);
+		// this.state.people=res.data.people;
+		sessionStorage.setItem('people', res.data.people)
+		console.log(res);
+
+		// debugger;
+	};
+
+	// this arrow function takes status as a parameter
+	// and changes the status of viewCompleted to true
+	// if the status is true, else changes it to false
+	// displayCompleted = status => {
+	// 	if (status) {
+	// 	return this.setState({ viewCompleted: true });
+	// 	}
+	// 	return this.setState({ viewCompleted: false });
+	// };
+
+	// this array function renders two spans that help control
+	// the set of items to be displayed(ie, completed or incomplete)
+	// renderTabList = () => {
+	// 	return (
+
+	// );
+	// };
 
 	// Start by visual effects to viewer
 	render() {
+		debugger;
 		return (
 			<main className="content">
 				<h1 className="text-success text-uppercase text-center my-4">
@@ -50,7 +87,9 @@ class App extends Component {
 										<h1>Welcome</h1>
 									</TabPanel>
 									<TabPanel>
-										<MAP/>
+										{/* <Provider people={this.state.people} > */}
+										<MAP people={this.state.people} />
+										{/* </Provider> */}
 									</TabPanel>
 								</Tabs>
 							</div>
