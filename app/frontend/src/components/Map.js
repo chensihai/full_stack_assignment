@@ -1,5 +1,5 @@
 import React from 'react'
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 // import axios from 'axios';
 
 const containerStyle = {
@@ -40,7 +40,12 @@ function MyComponent() {
         onUnmount={onUnmount}
       >
         { /* Child components, such as markers, info windows, etc. */ }
-        <></>
+
+        <Marker position={{lat:23.8105, lng:90.4126}} title='Simon'  label = {{text: 'Simon',  color: "#000", fontSize: "16px", fontWeight: "bold" }}/>
+        <Marker position={{lat:23.8107, lng:90.4123}} title='Jenny'/>
+        <Marker position={{lat:23.8102, lng:90.4124}} title='Josh'/>
+        <Marker position={{lat:23.8106, lng:90.4122}} title='Kiki'/>
+        <Marker position={{lat:23.8103, lng:90.4128}} title='Snowy'/>
       </GoogleMap>
   ) : <></>
 }
