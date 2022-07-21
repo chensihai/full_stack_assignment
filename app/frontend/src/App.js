@@ -38,7 +38,7 @@ class App extends Component {
 	async refreshList(){
 		const axios = require('axios').default;
 		const res = await axios('http://localhost:8088/api/people/');
-		this.state.people=JSON.parse(res.data.people);
+		// this.state.people=JSON.parse(res.data.people);
 		// this.state.people=res.data.people;
 		sessionStorage.setItem('people', res.data.people)
 		console.log(res);
