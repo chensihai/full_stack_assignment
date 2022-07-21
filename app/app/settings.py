@@ -25,15 +25,16 @@ SECRET_KEY = 'django-insecure-6xkh&1*a#_0d+c$rlorc*=h9uq%%0e%vhh_t5@40fpvz3wdln0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost','testserver']
 
 AUTH_USER_MODEL = 'custom_user.CustomUser'
 
-# STATIC_URL = "/static/"
-
-# STATICFILES_DIRS = (
-#   '/app/frontend/build/',
-# )
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ]
+}
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -42,11 +43,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
-    # Django REST framework 
     'rest_framework',
+    'rest_framework.authtoken',
+    # Django REST framework 
     'corsheaders',
-
      # Post application 
     # 'post.apps.PostConfig',
     'people',
