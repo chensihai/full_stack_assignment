@@ -61,7 +61,7 @@ services:
 
 
   pgadmin:
-    container_name: pgadmin4_container
+    container_name: pgadmin4
     image: dpage/pgadmin4
     restart: always
     environment:
@@ -73,7 +73,6 @@ services:
       - djangonet
 
   redis:
-    container_name: redis
     image: redis:latest
     restart: always
     entrypoint: redis-server --appendonly yes --requirepass 'redis_password' --maxmemory 512mb --maxmemory-policy allkeys-lru
