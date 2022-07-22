@@ -19,9 +19,23 @@ from django.urls import path, include
 from people import views as people_views
 from custom_user import views as custom_user_views
 
+# urlpatterns = [
+#     # path('', mysite_views.index),
+#     path('admin/', admin.site.urls),
+#     path('api/people/', people_views.index),
+#     path('api/user/', custom_user_views.index),
+# ]
+
+
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+
 urlpatterns = [
-    # path('', mysite_views.index),
     path('admin/', admin.site.urls),
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/people/', people_views.index),
     path('api/user/', custom_user_views.index),
 ]
