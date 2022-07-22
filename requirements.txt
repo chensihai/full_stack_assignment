@@ -5,3 +5,4 @@ djangorestframework==3.13.1
 psycopg2-binary
 django-cors-headers
 django_redis
+djangorestframework-simplejwt
